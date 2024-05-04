@@ -1,0 +1,2 @@
+###
+DELETE http://localhost:8080/v2/user/delete HTTP/1.1
