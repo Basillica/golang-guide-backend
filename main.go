@@ -4,7 +4,7 @@ import (
 	"github.com/Basillica/golang-guide/handler/api"
 )
 
-const Version = "v2"
+const Version = "v1"
 
 func main() {
 

@@ -24,7 +24,6 @@
 
 -   Building CRUD Operations: Create, Read, Update, Delete
 -   User Authentication and Authorization: Securing Your Application
--   Session Management (maintaining user state)
     -- Password Hashing (securely storing passwords)
     -- Error Handling: Gracefully Handling Errors in Web Applications
 
@@ -32,6 +31,7 @@
 
 -   Templates: Building Dynamic User Interfaces
 -   Working with Data Formats: JSON and Beyond (handling data exchange)
+-   Session Management (maintaining user state)
 
 ### User Interaction and Communication (comms)
 

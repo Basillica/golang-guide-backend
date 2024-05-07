@@ -7,6 +7,6 @@ import (
 
 func AddAuthRoutes(r *gin.Engine, version string) {
 	g := r.Group(version + "/auth")
-	g.GET("/login", auth.LoginHandler)
+	g.POST("/login", auth.LoginHandler)
 	g.GET("/logout", auth.LogoutHandler)
 }

@@ -2,24 +2,21 @@ package models
 
 import (
 	"errors"
-	"time"
 
 	"gorm.io/gorm"
 )
 
 type User struct {
-	FirstName string
-	LastName  string
-	Email     string
-	ID        string `json:"id" gorm:"primaryKey;column:user_id;serializer:json"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt gorm.DeletedAt `gorm:"index"`
+	FirstName string `json:"firstname" gorm:"serializer:json;column:firstname"`
+	LastName  string `json:"lastname" gorm:"serializer:json;column:lastname"`
+	Email     string `json:"email" gorm:"serializer:json;column:email"`
+	ID        string `json:"id" gorm:"serializer:json;column:id"`
+	CreatedAt string `json:"created_at" gorm:"serializer:json;column:created_at"`
 }
 
 // basic crud
 func (u *User) Table() string {
-	return "dbo.users"
+	return "dbo.example"
 }
 
 func (u *User) ValidateEmail(db *gorm.DB, user User) func(db *gorm.DB) *gorm.DB {
@@ -32,31 +29,27 @@ func (u *User) ValidateEmail(db *gorm.DB, user User) func(db *gorm.DB) *gorm.DB 
 	}
 }
 
-func (u *User) ValidateEmail2(db *gorm.DB, user User) func(db *gorm.DB) *gorm.DB {
-	return func(db *gorm.DB) *gorm.DB {
-		if user.Email != "" {
-			return db
-		}
-		db.AddError(errors.New("invalid email provided"))
-		return db
-	}
-}
-
 func (u *User) Create(db *gorm.DB) error {
-	if err := db.Table(u.Table()).Scopes(u.ValidateEmail(db, *u), u.ValidateEmail2(db, *u)).Create(&u).Error; err != nil {
+	if err := db.Table(u.Table()).Scopes(u.ValidateEmail(db, *u)).Create(&u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *User) Update()       {}
-func (u *User) Delete()       {}
-func (u *User) Get(id string) {}
+func (u *User) Update(db *gorm.DB, user User) error {
+	return db.Table(u.Table()).Updates(&u).Error
+}
 
-func (u *User) GetById() func(db *gorm.DB) *gorm.DB {
-	return func(db *gorm.DB) *gorm.DB {
-		return db.Table(u.Table()).Where("id = (?)", u.ID).First(u)
-	}
+func (u *User) Delete(db *gorm.DB) error {
+	return db.Table(u.Table()).Unscoped().Delete(&u).Error
+}
+
+func (u *User) Get(db *gorm.DB) *gorm.DB {
+	return db.Table(u.Table())
+}
+
+func (u *User) GetByAttr(db *gorm.DB) *gorm.DB {
+	return db.Table(u.Table()).First(u)
 }
 
 func (u *User) GetByIds(ids []string) func(db *gorm.DB) *gorm.DB {

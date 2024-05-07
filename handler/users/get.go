@@ -3,17 +3,15 @@ package users
 import (
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/Basillica/golang-guide/config/db"
 	"github.com/Basillica/golang-guide/handler"
 	"github.com/Basillica/golang-guide/models"
 	"github.com/Basillica/golang-guide/utils"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 )
 
-func CreateHandler(c *gin.Context) {
+func GetHandler(c *gin.Context) {
 	var req models.User
 	var access_token string
 	var err error
@@ -32,21 +30,12 @@ func CreateHandler(c *gin.Context) {
 		})
 		return
 	}
+
 	fmt.Println(claims, "the user decoced jwt")
 
-	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error":  err.Error(),
-			"reason": "invalid payload provided",
-		})
-		return
-	}
-
-	req.CreatedAt = time.Now().Local().String()
-	req.ID = uuid.New().String()
-
 	db := db.GetClientGorm()
-	if err := req.Create(db); err != nil {
+	var users []models.User
+	if err := req.Get(db).Find(&users).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
@@ -54,6 +43,6 @@ func CreateHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"status": "success",
+		"status": "success", "users": users,
 	})
 }
