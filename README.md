@@ -32,6 +32,7 @@
 -   Templates: Building Dynamic User Interfaces
 -   Working with Data Formats: JSON and Beyond (handling data exchange)
 -   Session Management (maintaining user state)
+-   cookies
 
 ### User Interaction and Communication (comms)
 

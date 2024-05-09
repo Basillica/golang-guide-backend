@@ -11,6 +11,7 @@ type User struct {
 	LastName  string `json:"lastname" gorm:"serializer:json;column:lastname"`
 	Email     string `json:"email" gorm:"serializer:json;column:email"`
 	ID        string `json:"id" gorm:"serializer:json;column:id"`
+	Password  string `json:"password" gorm:"serializer:json;column:password"`
 	CreatedAt string `json:"created_at" gorm:"serializer:json;column:created_at"`
 }
 
