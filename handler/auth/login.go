@@ -27,7 +27,7 @@ func LoginHandler(c *gin.Context) {
 	user.Email = req.Username
 
 	db := db.GetClientGorm()
-	if err := user.GetByAttr(db).Error; err != nil {
+	if err := user.GetByEmail(db, req.Username).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
@@ -74,7 +74,7 @@ func LoginHandler(c *gin.Context) {
 			"error": "you are not authorized",
 		})
 	} else {
-		utils.PersistCookie(c, session.ID, token)
+		utils.PersistCookie(c, user, session.ID, token)
 		c.JSON(200, gin.H{
 			"token": token,
 		})

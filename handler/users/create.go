@@ -6,6 +6,8 @@ import (
 	"time"
 
 	"github.com/Basillica/golang-guide/config/db"
+	"github.com/Basillica/golang-guide/config/helpers"
+	"github.com/Basillica/golang-guide/handler"
 	"github.com/Basillica/golang-guide/models"
 	"github.com/Basillica/golang-guide/utils"
 	"github.com/gin-gonic/gin"
@@ -14,6 +16,26 @@ import (
 
 func CreateHandler(c *gin.Context) {
 	var req models.User
+	var access_token string
+	var err error
+
+	if access_token, err = handler.GetToken(c); err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"error": "invalid token provided or token missing in header",
+		})
+		return
+	}
+
+	secret := helpers.GetEnv("JWT_SECRET", "")
+	claims, err := utils.ValidateJWT(access_token, secret)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"error": "invalid token provided",
+		})
+		return
+	}
+
+	fmt.Println(claims, "the user decoced jwt")
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -33,7 +55,6 @@ func CreateHandler(c *gin.Context) {
 		return
 	} else {
 		req.Password = pass
-		fmt.Println(pass, "*****++++++++++++++")
 	}
 
 	db := db.GetClientGorm()

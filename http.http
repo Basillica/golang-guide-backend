@@ -1,9 +1,11 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImZpcnN0bmFtZSI6ImFkbWluIiwibGFzdG5hbWUiOiJ1c2VyIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJpZCI6IjEwYzFjMjk5LTEyY2QtNDliOC04OTZjLTU4ODZhZWNkYmI5NyIsInVzZXJyb2xlIjoiR0xPQkFMX2FETUlOIiwidXNlcnNjb3BlcyI6WyJvcmcxL2V1cm9wZS9nZXJtYW55L2Jlcmxpbi9hZG1pbi8iLCJvcmcxL2V1cm9wZS9nZXJtYW55L211bmljaC9hZG1pbi8iLCJvcmcxL2V1cm9wZS9nZXJtYW55L2ZyYW5rZnVydC9kZXZlbG9wZXIvIl0sInBhc3N3b3JkIjoiJDJhJDEwJGUzSFE5Q1lZWFpycnlnWWkzcE51ei5UMDdNSUdZNHZBeUdBdHE4M2xKR2ZJMnZZd3NFMDRlIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDUtMjUgMTM6NTg6MDUuMTU0NzEyNCArMDIwMCBNUyJ9LCJhdWQiOiJnaXRodWIuY29tL0Jhc2lsbGljYS9nb2xhbmctZ3VpZGUiLCJleHAiOjE3MTY3MjQ3MDMsImlhdCI6MTcxNjYzODMwMywiaXNzIjoiZ2l0aHViLmNvbS9CYXNpbGxpY2EvZ29sYW5nLWd1aWRlIn0.dHYyRybp5RbMiugwv3PCFlGEVf30NMb_ZDO_FAlHZy4
+
 ### LOGIN
 POST http://localhost:8080/v1/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "user@gmail.com",
+    "username": "admin@gmail.com",
     "password": "password"
 }
 
@@ -15,16 +17,22 @@ POST http://localhost:8080/v1/user/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstname": "tonie",
-    "lastname": "etienne",
-    "email": "user@gmail.com",
-    "password": "password"
+    "firstname": "regular",
+    "lastname": "user",
+    "email": "regularuser@gmail.com",
+    "password": "password",
+    "userrole": "REGULAR_USER",
+    "userscopes": [
+        "org1/europe/germany/berlin/admin/",
+        "org1/europe/germany/munich/admin/",
+        "org1/europe/germany/frankfurt/developer/"
+    ]
 }
 
 ### get users
 GET http://localhost:8080/v1/user/get HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImZpcnN0bmFtZSI6InRvbmllIiwibGFzdG5hbWUiOiJldGllbm5lIiwiZW1haWwiOiJlemVhYmFzaWxpYW50aG9ueUBnbWFpbC5jb20iLCJpZCI6IjBmODdmNDNjLWM1YTYtNDViMS05M2M1LWM0MGI2NDUxMmE4MiIsImNyZWF0ZWRfYXQiOiIyMDI0LTA1LTA2IDIyOjI2OjU3LjYxMDgwNTMgKzAyMDAgQ0VTVCJ9LCJhdWQiOiJnaXRodWIuY29tL0Jhc2lsbGljYS9nb2xhbmctZ3VpZGUiLCJleHAiOjE3MTUzNDY3MDQsImlhdCI6MTcxNTI2MDMwNCwiaXNzIjoiZ2l0aHViLmNvbS9CYXNpbGxpY2EvZ29sYW5nLWd1aWRlIn0.RVTuMVnrjvpJHY1gCXyX-b0ob_PetLezCOG9H2tT0cg
+Authorization: Bearer {{token}}
 
 ### get user
 GET http://localhost:8080/v1/user/get/b13ac0ce-6902-404c-94ab-dcdf0c9ac41b HTTP/1.1

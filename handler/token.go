@@ -8,6 +8,9 @@ import (
 )
 
 func GetToken(c *gin.Context) (string, error) {
+	if cookie, err := c.Cookie("access_token"); err == nil {
+		return cookie, nil
+	}
 	token := c.Request.Header.Get("Authorization")
 	access_token := strings.TrimPrefix(token, "Bearer ")
 	if access_token == "" || access_token == token {
