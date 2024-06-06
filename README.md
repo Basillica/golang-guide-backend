@@ -34,6 +34,8 @@
 -   Session Management (maintaining user state)
 -   cookies
 
+### Heirarchical RBAC implementation in Golang (h-rbac)
+
 ### User Interaction and Communication (comms)
 
 -   Forms: Processing User Input and Handling Submissions
