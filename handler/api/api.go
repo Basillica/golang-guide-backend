@@ -23,6 +23,7 @@ func New(version string) {
 
 	AddAuthRoutes(r, version)
 	AddUserRoutes(r, version)
+	AddMiscRoutes(r, version)
 	if err := godotenv.Load(".env"); err != nil {
 		panic(err)
 	}

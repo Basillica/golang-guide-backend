@@ -41,3 +41,12 @@ Content-Type: application/json
 ### delete user
 DELETE http://localhost:8080/v1/user/delete/b13ac0ce-6902-404c-94ab-dcdf0c9ac41b HTTP/1.1
 Content-Type: application/json
+
+
+### form submission
+POST http://localhost:8080/v1/misc/form  HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=tonie
+&email=email@example.com
+&message=some boring message
