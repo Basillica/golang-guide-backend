@@ -24,7 +24,7 @@ func (u *User) Table() string {
 	return "dbo.example"
 }
 
-func (u *User) ValidateEmail(db *gorm.DB, user User) func(db *gorm.DB) *gorm.DB {
+func (u *User) ValidateEmail(db *gorm.DB, user *User) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		if user.Email != "" {
 			return db
@@ -35,7 +35,7 @@ func (u *User) ValidateEmail(db *gorm.DB, user User) func(db *gorm.DB) *gorm.DB 
 }
 
 func (u *User) Create(db *gorm.DB) error {
-	if err := db.Table(u.Table()).Scopes(u.ValidateEmail(db, *u)).Create(&u).Error; err != nil {
+	if err := db.Table(u.Table()).Scopes(u.ValidateEmail(db, u)).Create(&u).Error; err != nil {
 		return err
 	}
 	return nil

@@ -57,7 +57,7 @@ func SubmitHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Form submitted successfully!")
 }
 
-func main2() {
+func Main2() {
 	http.HandleFunc("/", RenderTemplate)
 	http.HandleFunc("/submit", SubmitHandler)
 	fmt.Println("server is being served on http://localhost:8080")

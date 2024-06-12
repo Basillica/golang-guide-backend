@@ -34,7 +34,7 @@ func GetHandler(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(claims, "the user decoced jwt")
+	fmt.Println(claims, "the usre decoced jwt")
 	role, _ := c.Cookie("userrole")
 	scopestring, _ := c.Cookie("userscopes")
 	var scopes []string

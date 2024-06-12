@@ -1,0 +1,110 @@
+linters-settings:
+    errcheck:
+        check-type-assertions: true
+    goconst:
+        min-len: 2
+        min-occurrences: 3
+    gocritic:
+        enabled-tags:
+            - diagnostic
+            - experimental
+            - opinionated
+            - performance
+            - style
+    govet:
+        settings:
+            printf:
+                funcs:
+                    - (github.com/golangci/golangci-lint/pkg/logutils.Log).Infof
+                    - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
+                    - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
+                    - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
+        enable:
+            - nilness
+            - shadow
+    nolintlint:
+        require-explanation: true
+        require-specific: true
+
+linters:
+    disable-all: true
+    enable:
+        - dogsled
+        - dupl
+        - exportloopref
+        - exhaustive
+        - goconst
+        - gocritic
+        - gofmt
+        - goimports
+        - gosec
+        - gosimple
+        - govet
+        - ineffassign
+        - misspell
+        - nolintlint
+        - nakedret
+        - predeclared
+        - staticcheck
+        - stylecheck
+        - thelper
+        - tparallel
+        - typecheck
+        - unconvert
+        - unparam
+
+run:
+    issues-exit-code: 1
+    concurrency: 4
+    # Timeout for analysis, e.g. 30s, 5m.
+    # Default: 1m
+    timeout: 5m
+    # Include test files or not.
+    # Default: true
+    tests: false
+    allow-parallel-runners: true
+    # Allow multiple golangci-lint instances running, but serialize them around a lock.
+    # If false, golangci-lint exits with an error if it fails to acquire file lock on start.
+    # Default: false
+    allow-serial-runners: true
+    # Define the Go version limit.
+    # Mainly related to generics support since go1.18.
+    # Default: use Go version from the go.mod file, fallback on the env var `GOVERSION`, fallback on 1.17
+    go: "1.19"
+output:
+    # The formats used to render issues.
+    # Formats:
+    # - `colored-line-number`
+    # - `line-number`
+    # - `json`
+    # - `colored-tab`
+    # - `tab`
+    # - `html`
+    # - `checkstyle`
+    # - `code-climate`
+    # - `junit-xml`
+    # - `github-actions`
+    # - `teamcity`
+    # - `sarif`
+    # Output path can be either `stdout`, `stderr` or path to the file to write to.
+    #
+    # For the CLI flag (`--out-format`), multiple formats can be specified by separating them by comma.
+    # The output can be specified for each of them by separating format name and path by colon symbol.
+    # Example: "--out-format=checkstyle:report.xml,json:stdout,colored-line-number"
+    # The CLI flag (`--out-format`) override the configuration file.
+    #
+    # Default:
+    #   formats:
+    #     - format: colored-line-number
+    #       path: stdout
+    formats:
+        - format: json
+          path: stderr
+        - format: checkstyle
+          path: report.xml
+        - format: colored-line-number
+    sort-order:
+        - linter
+        - severity
+        - file # filepath, line, and column.
+    show-stats: true
