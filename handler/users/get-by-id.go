@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Basillica/golang-guide/config/db"
 	"github.com/Basillica/golang-guide/handler"
 	"github.com/Basillica/golang-guide/models"
 	"github.com/Basillica/golang-guide/utils"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func GetByIdHandler(c *gin.Context) {
@@ -41,7 +41,7 @@ func GetByIdHandler(c *gin.Context) {
 	}
 
 	req.ID = id
-	db := db.GetClientGorm()
+	db := c.MustGet("sql_client").(*gorm.DB)
 	if err := req.GetByAttr(db).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),

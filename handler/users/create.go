@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Basillica/golang-guide/config/db"
 	"github.com/Basillica/golang-guide/config/helpers"
 	"github.com/Basillica/golang-guide/handler"
 	"github.com/Basillica/golang-guide/models"
 	"github.com/Basillica/golang-guide/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 func CreateHandler(c *gin.Context) {
@@ -57,7 +57,7 @@ func CreateHandler(c *gin.Context) {
 		req.Password = pass
 	}
 
-	db := db.GetClientGorm()
+	db := c.MustGet("sql_client").(*gorm.DB)
 	if err := req.Create(db); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),

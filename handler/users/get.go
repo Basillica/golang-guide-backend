@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Basillica/golang-guide/config/db"
 	"github.com/Basillica/golang-guide/config/helpers"
 	"github.com/Basillica/golang-guide/datamanager"
 	"github.com/Basillica/golang-guide/handler"
 	"github.com/Basillica/golang-guide/models"
 	"github.com/Basillica/golang-guide/utils"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func GetHandler(c *gin.Context) {
@@ -40,7 +40,7 @@ func GetHandler(c *gin.Context) {
 	var scopes []string
 	json.Unmarshal([]byte(scopestring), &scopes)
 
-	db := db.GetClientGorm()
+	db := c.MustGet("sql_client").(*gorm.DB)
 	manager, err := datamanager.NewUserQueryManager(db, scopes, role)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

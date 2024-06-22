@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Basillica/golang-guide/config/db"
 	"github.com/Basillica/golang-guide/config/helpers"
 	"github.com/Basillica/golang-guide/models"
 	"github.com/Basillica/golang-guide/types/requests"
@@ -25,8 +24,8 @@ func LoginHandler(c *gin.Context) {
 	}
 
 	user.Email = req.Username
+	db := c.MustGet("sql_client").(*gorm.DB)
 
-	db := db.GetClientGorm()
 	if err := user.GetByEmail(db, req.Username).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),

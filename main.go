@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Basillica/golang-guide/handler/api"
+	"github.com/Basillica/golang-guide/api"
 )
 
 var (
@@ -13,5 +13,6 @@ var (
 
 func main() {
 	fmt.Println("app was built on ", Date)
-	api.New(Version)
+	a := api.New(Version)
+	a.Start(a.Engine)
 }

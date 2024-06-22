@@ -7,6 +7,5 @@ import (
 
 func AddMiscRoutes(r *gin.Engine, version string) {
 	g := r.Group(version + "/misc")
-	g.POST("/form", misc.FormHandler)
-	g.GET("/ws", misc.EventsHandler)
+	g.POST("/health", misc.HealthHandler)
 }

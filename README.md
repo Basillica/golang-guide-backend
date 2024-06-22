@@ -45,7 +45,7 @@
 
 -   Dependency Management with Go Modules (managing external libraries)
 
-### Building Robust Web Applications (robust-app)
+### Building Robust Web Applications (robust)
 
 -   Middleware: Interceptors for Request Processing (common tasks and custom functionality)
 -   Testing Your Backend Web Application: Unit and Integration Tests
