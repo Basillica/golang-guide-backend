@@ -54,7 +54,16 @@
 ### Scaling and Performance Optimization (optimization)
 
 -   Caching Strategies for Improved Response Times
+    -   In-memory
+    -   Distributed
+    -   File-based
+    -   CDN
 -   Logging and Monitoring: Tracking Application Behavior
+    -   Stucuted logging with Zap
+    -   App metrics with Prometheus
+    -   Distrubuted tracing with Jaeger
+    -   Log aggregation with ELK stack
+    -   Alerting and notification with Prometheus Alertmanager
 
 ### Advanced Security Practices (advanced-practices)
 
