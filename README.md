@@ -68,6 +68,24 @@
 ### Advanced Security Practices (advanced-practices)
 
 -   Input Validation: Sanitizing User Input to Prevent Attacks
+
+    -   SQL injection
+    -   Cross-site scripting XSS
+    -   Remote code execution RCE
+    -   Path traversal
+    -   Command injection
+
+    Solution:
+
+    1. User input sanitization and validation
+       a. Whitelisting and Blacklisting
+       b. Regular expressions
+       c. Third-party libraries
+    2. Context-aware prevention
+       a. SQL injection prevention
+       b. XSS prevention
+       c. RCE prevention
+
 -   SQL Injection Prevention: Protecting Your Database
 
 ### Deployment Strategies (strategies)
