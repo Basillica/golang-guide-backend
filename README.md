@@ -88,7 +88,15 @@
 
 -   SQL Injection Prevention: Protecting Your Database
 
-### Deployment Strategies (strategies)
+### Deployment Strategies (deployment)
 
 -   Cloud Deployment Platforms (Heroku, AWS, Google Cloud)
 -   Containerization with Docker (packaging your application for deployment)
+    -   https://www.heroku.com/pricing?utm_source=google&utm_medium=paid_search&utm_campaign=emea_heraw&utm_content=general-branded-search-rsa&utm_term=heroku&gad_source=1&gclid=CjwKCAjwp4m0BhBAEiwAsdc4aMvpvZocpGRyZYS58qC0VZyGhrpUw3LowGjiocp08mELVbZeSyHMrxoCiFIQAvD_BwE
+    -   https://dev.to/aws-builders/aws-azure-mapping-cheat-sheet-1dom
+    -   https://www.back4app.com/pricing/container-as-a-service
+    -   https://fly.io/docs/about/pricing/
+    -   https://render.com/pricing
+    -   https://railway.app/pricing
+    -   https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=categories%23serverless
+    -   https://azure.microsoft.com/en-us/pricing/free-services
